@@ -2,7 +2,7 @@
 {
     public class StaticDetails
     {
-        public static string ProductApiBase { get; set; }
+        public static string ProductApiBaseUrl { get; set; }
         public enum ApiType
         {
             GET,
