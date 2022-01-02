@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
+builder.Services.AddMvcCore();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
