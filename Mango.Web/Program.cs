@@ -14,6 +14,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
