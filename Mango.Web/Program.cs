@@ -1,12 +1,19 @@
+using Mango.Web;
+using Mango.Web.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Agregando HTTPCLient 
+builder.Services.AddHttpClient<IProductService, ProductService>();
+//Seteando APIURL
+StaticDetails.ProductApiBaseUrl = builder.Configuration["ServiceUrls:ProductApi"];
+//Adding de service to dependency injection
+builder.Services.AddScoped<IProductService, ProductService>();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddControllersWithViews();
-builder.Services.AddMvcCore();
-builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
