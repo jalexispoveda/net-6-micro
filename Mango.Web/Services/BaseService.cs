@@ -1,13 +1,14 @@
 ﻿using Mango.Web.Models;
 using Mango.Web.Services.IServices;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Mango.Web.Services
 {
     public class BaseService : IBaseService
     {
-        public ResponseDTO responseModel { get;set;}
+        public ResponseDTO responseModel { get; set; }
         public IHttpClientFactory httpClientFactory { get; set; }
 
         public BaseService(IHttpClientFactory httpClientFactory)
@@ -21,11 +22,16 @@ namespace Mango.Web.Services
             try
             {
                 var client = httpClientFactory.CreateClient("MangoAPI");
+                client.DefaultRequestHeaders
+                      .Accept
+                      .Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+
                 HttpRequestMessage message = new HttpRequestMessage();
-                message.Headers.Add("Content-Type", "application/json");
+                //message.Headers.Add("Accept", "application/json");
+                //message.Headers.Add("Content-Type", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
                 client.DefaultRequestHeaders.Clear();
-                if(apiRequest.Data != null)
+                if (apiRequest.Data != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data), Encoding.UTF8, "application/json");
                 }
