@@ -38,10 +38,10 @@ namespace Mango.Services.ProductAPI.Repository
         {
             try
             {
-                ProductDTO productDto = await GetProductById(id);
-                if(productDto == null)
+                Product product = await _db.Products.Where(x => x.ProductId == id).FirstOrDefaultAsync();
+                if (product == null)
                     return false;
-                _db.Products.Remove(_mapper.Map<Product>(productDto));
+                _db.Products.Remove(product);
                 await _db.SaveChangesAsync();
                 return true;
             }
