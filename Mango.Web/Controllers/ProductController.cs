@@ -17,12 +17,33 @@ namespace Mango.Web.Controllers
         {
             List<ProductDTO> list = new();
             var response = await _productService.GetProductsAsync<ResponseDTO>();
-            if(response != null && response.IsSucces)
+            if (response != null && response.IsSucces)
             {
                 list = JsonConvert.DeserializeObject<List<ProductDTO>>(Convert.ToString(response.Result));
             }
 
             return View(list);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ProductDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                List<ProductDTO> list = new();
+                var response = await _productService.CreateProductAsync<ResponseDTO>(model);
+                if (response != null && response.IsSucces)
+                {
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+            }
+            return View(model);
         }
     }
 }
