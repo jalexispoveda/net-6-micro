@@ -32,12 +32,38 @@ namespace Mango.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductDTO model)
         {
             if (ModelState.IsValid)
             {
-                List<ProductDTO> list = new();
                 var response = await _productService.CreateProductAsync<ResponseDTO>(model);
+                if (response != null && response.IsSucces)
+                {
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int productId)
+        {
+            var response = await _productService.GetProductByIdAsync<ResponseDTO>(productId);
+            if (response != null && response.IsSucces)
+            {
+                ProductDTO model = JsonConvert.DeserializeObject<ProductDTO>(Convert.ToString(response.Result));
+                return View(model);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ProductDTO model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _productService.UpdateProductAsync<ResponseDTO>(model);
                 if (response != null && response.IsSucces)
                 {
                     return RedirectToAction(nameof(ProductIndex));
