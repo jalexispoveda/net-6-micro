@@ -11,19 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '3.1.x', '6.0.x' ]
+        dotnet-version: [ 6.0.x' ]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup .NET ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-
-      - name: Display .NET version
-        run: dotnet --version
+            - uses: actions/checkout@v3
+            - name: Setup .NET Core
+              uses: actions/setup-dotnet@v2
+              with:
+                  dotnet-version: 6.0.x
+            - name: Install dependencies
+              run: dotnet restore
+            - name: Build
+              run: dotnet build --configuration Release --no-restore            
 
   dependabot:
     name: Dependabot fetch metadata
@@ -36,5 +35,12 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           skip-commit-verification: false
+      - name: Bump versions
+        uses: SiqiLu/dotnet-bump-version@2.1.0
+        with:
+            version_files: "**/*.csproj"
+            version_mask: 0.0.1
+            version_overwrite: "*.*.*"
+            github_token: ${{ secrets.GITHUB_TOKEN }}
 
         
