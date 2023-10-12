@@ -1,21 +1,40 @@
-name: dotnet package
+name: CI/CD with Dependabot
 
-on: [push]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         dotnet-version: [ '3.1.x', '6.0.x' ]
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup dotnet ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      # You can test your matrix by printing the current dotnet version
-      - name: Display dotnet version
+
+      - name: Display .NET version
         run: dotnet --version
+
+  dependabot:
+    name: Dependabot fetch metadata
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          skip-commit-verification: false
+
+        
