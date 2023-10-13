@@ -30,6 +30,7 @@ jobs:
         with:
           versionSpec: 5.x
       - name: Determine Version
+        id:   gitversion # id to later be referenced
         uses: gittools/actions/gitversion/execute@v0
       - name: Publish release with GitReleaseManager
         uses: gittools/actions/gitreleasemanager/publishv0
