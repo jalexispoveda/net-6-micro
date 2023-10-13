@@ -22,7 +22,7 @@ jobs:
             - name: Install dependencies
               run: dotnet restore
             - name: Build
-              run: dotnet build --configuration Release --no-restore            
+              run: dotnet build --configuration Release          
 
   dependabot:
     name: Dependabot fetch metadata
