@@ -12,3 +12,6 @@ updates:
     open-pull-requests-limit: 3
     labels:
       - "nuget dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
