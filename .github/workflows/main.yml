@@ -1,35 +1,42 @@
+---
 name: CI/CD with Dependabot
-
 on:
   pull_request:
     types:
       - opened
       - synchronize
-
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ 6.0.x' ]
-
+        dotnet-version:
+          - '6.0.x'
     steps:
-            - uses: actions/checkout@v3
-            - name: Setup .NET Core
-              uses: actions/setup-dotnet@v2
-              with:
-                  dotnet-version: 6.0.x
-            - name: Install dependencies
-              run: dotnet restore
-            - name: Build
-              run: dotnet build --configuration Release 
-            - name: Install GitVersion
-              uses: gittools/actions/gitversion/setup@v0
-              with:
-                  versionSpec: '5.x'
-            - name: Determine Version
-              uses: gittools/actions/gitversion/execute@v0
-
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore
+        run: dotnet restore "Mango.Web"
+      - name: Build
+        run: dotnet build "Mango.Web" --configuration Release --no-restore
+      - name: Publish
+        run: dotnet publish "Mango.Web" --configuration Release --no-build
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+            versionSpec: '5.x'
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0
+      - uses: gittools/actions/gitreleasemanager/publishv0
+        name: Publish release with GitReleaseManager
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: 'someOwner'
+          tagName: '0.1.0'
   dependabot:
     name: Dependabot fetch metadata
     runs-on: ubuntu-latest
@@ -39,7 +46,5 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           skip-commit-verification: false
-
-        
