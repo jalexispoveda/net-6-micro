@@ -31,8 +31,8 @@ jobs:
             versionSpec: '5.x'
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0
-      - uses: gittools/actions/gitreleasemanager/publishv0
-        name: Publish release with GitReleaseManager
+      - name: Publish release with GitReleaseManager
+        uses: gittools/actions/gitreleasemanager/publishv0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           owner: 'someOwner'
