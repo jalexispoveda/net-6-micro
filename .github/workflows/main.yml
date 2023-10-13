@@ -22,7 +22,13 @@ jobs:
             - name: Install dependencies
               run: dotnet restore
             - name: Build
-              run: dotnet build --configuration Release          
+              run: dotnet build --configuration Release 
+            - name: Install GitVersion
+              uses: gittools/actions/gitversion/setup@v0
+              with:
+                  versionSpec: '5.x'
+            - name: Determine Version
+              uses: gittools/actions/gitversion/execute@v0
 
   dependabot:
     name: Dependabot fetch metadata
