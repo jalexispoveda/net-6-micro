@@ -1,12 +1,15 @@
 ---
 name: CI/CD with Dependabot
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    types:
-      - opened
-      - synchronize
+   branches:
+    - main
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  types:
+  #    - opened
+  #    - synchronize
 jobs:
   build:
     runs-on: windows-latest
