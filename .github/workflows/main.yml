@@ -30,7 +30,7 @@ jobs:
         with:
             version_files: "**/*.csproj"
             version_mask: 0.0.1
-            version_overwrite: "*.*.*.*"
+            version_overwrite: "*.*.*"
             github_token: ${{ secrets.GITHUB_TOKEN }}
   dependabot:
     name: Dependabot fetch metadata
