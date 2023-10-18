@@ -23,21 +23,15 @@ jobs:
         run: dotnet restore "Mango.Web"
       - name: Build
         run: dotnet build "Mango.Web" --configuration Release --no-restore
-      - name: Publish
-        run: dotnet publish "Mango.Web" --configuration Release --no-build
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Bump versions
+        uses: SiqiLu/dotnet-bump-version@2.1.0
         with:
-          versionSpec: 5.x
-      - name: Determine Version
-        id:   gitversion # id to later be referenced
-        uses: gittools/actions/gitversion/execute@v0
-      - name: Publish release with GitReleaseManager
-        uses: gittools/actions/gitreleasemanager/publishv0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: someOwner
-          tagName: 0.1.0
+            version_files: "**/*.csproj"
+            version_mask: 0.0.1
+            version_overwrite: "*.*.*.*"
+            github_token: ${{ secrets.GITHUB_TOKEN }}
   dependabot:
     name: Dependabot fetch metadata
     runs-on: ubuntu-latest
