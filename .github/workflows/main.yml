@@ -24,9 +24,7 @@ jobs:
       - name: Restore
         run: dotnet restore "Mango.Web"
       - name: Build
-        run: dotnet build "Mango.Web" --configuration Release --no-restore
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build "Mango.Web" --configuration Release --no-restore     
       - name: Bump versions
         uses: SiqiLu/dotnet-bump-version@master
         with:
