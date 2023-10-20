@@ -1,6 +1,10 @@
 ---
 name: CI/CD with Dependabot
 on:
+  push:
+    branches:
+      - 'dependabot/**'  
+      - 'feature/**'  
   pull_request:
    branches:
     - main
@@ -12,6 +16,7 @@ on:
   #    - synchronize
 jobs:
   build:
+    name: Build application
     runs-on: windows-latest
     strategy:
       matrix:
@@ -46,10 +51,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           skip-commit-verification: false
-      # - name: Bump versions
-      #   uses: SiqiLu/dotnet-bump-version@master
-      #   with:
-      #       version_files: "**/*.csproj"
-      #       version_mask: 0.0.1
-      #       version_overwrite: "*.*.*.*"
-      #       github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Bump versions
+        uses: SiqiLu/dotnet-bump-version@master
+        with:
+            version_files: "**/*.csproj"
+            version_mask: 0.0.1
+            version_overwrite: "*.*.*.*"
+            github_token: ${{ secrets.GITHUB_TOKEN }}
