@@ -17,7 +17,7 @@ on:
 jobs:
   build:
     name: Build application
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         dotnet-version:
