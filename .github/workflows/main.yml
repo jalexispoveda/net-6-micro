@@ -3,8 +3,9 @@ name: CI/CD with Dependabot
 on:
   push:
     branches:
-      - 'dependabot/**'  
-      - 'feature/**'  
+      #- 'dependabot/**'  
+      #- 'feature/**'  
+      - 'main'  
   pull_request:
    branches:
     - main
