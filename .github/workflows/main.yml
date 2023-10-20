@@ -62,13 +62,28 @@ jobs:
   merge_to_develop:
     name: Merge to Develop by Dependabot
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor == 'dependabot[bot]' }}
+    #if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.actor == 'dependabot[bot]' }}    
     steps:
-      - name: Bump versions
-        uses: SiqiLu/dotnet-bump-version@2.0.0
-        with:
-            version_files: "**/*.csproj"
-            version_mask: 0.0.1.0
-            version_overwrite: "*.*.*.*"
-            github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get branch name
+        id: branch-name
+        run: |
+          echo "::set-output name=branch::$(echo $GITHUB_REF | sed 's/refs\/heads\///')"
+        shell: bash
+
+      - name: Validate and run action
+        if: startsWith(steps.branch-name.outputs.branch, 'feature/')
+        run: |
+          # Add your workflow steps here
+          - name: Bump versions
+            uses: SiqiLu/dotnet-bump-version@2.0.0
+            with:
+              version_files: "**/*.csproj"
+              version_mask: 0.0.1.0
+              version_overwrite: "*.*.*.*"
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+
+     
       
