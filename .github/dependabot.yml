@@ -10,11 +10,19 @@ updates:
     target-branch: "develop"
     schedule:
       interval: "daily"
-      day: "saturday"
-      time: "05:05"
     open-pull-requests-limit: 10
     labels:
       - "nuget dependencies"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
+  - package-ecosystem: "nuget" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "07:05"
+    open-pull-requests-limit: 10
+    labels:
+      - "nuget dependencies"
