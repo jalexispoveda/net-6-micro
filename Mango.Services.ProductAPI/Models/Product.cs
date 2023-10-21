@@ -2,6 +2,7 @@
 
 namespace Mango.Services.ProductAPI.Models
 {
+    //test
     public class Product
     {
         [Key]
