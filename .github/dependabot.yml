@@ -10,7 +10,7 @@ updates:
     schedule:
       interval: "daily"
       day: "saturday"
-      time: "04:49"
+      time: "04:46"
     open-pull-requests-limit: 10
     labels:
       - "nuget dependencies"
