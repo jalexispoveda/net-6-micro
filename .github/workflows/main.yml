@@ -5,6 +5,7 @@ on:
     branches:
       - feature/**
       - dependabot/**
+      - develop 
 jobs:
   dependabot:
     name: Dependabot fetch metadata
