@@ -21,8 +21,8 @@ updates:
     target-branch: "develop"
     schedule:
       interval: "weekly"
-      day: "saturday"
-      time: "07:05"
+      day: "sunday"
+      time: "23:26"
     open-pull-requests-limit: 10
     labels:
       - "nuget dependencies"
