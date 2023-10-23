@@ -1,12 +1,14 @@
 version: 2
 updates:
-  - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "nuget" 
+    directory: "/"
     target-branch: "develop"
     schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "22:41"
-    open-pull-requests-limit: 5
+      interval: "daily"
+    open-pull-requests-limit: 4
     labels:
       - "nuget dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+ 

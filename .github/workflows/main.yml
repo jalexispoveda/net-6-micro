@@ -3,9 +3,7 @@ name: CI/CD with Dependabot
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'dependabot/**'
-      - 'develop'
+      - 'develop-dependabot'
 jobs:
   dependabot:
     name: Dependabot fetch metadata
