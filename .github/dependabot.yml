@@ -2,7 +2,7 @@ version: 2
 updates:
   - package-ecosystem: "nuget" 
     directory: "/"
-    target-branch: "develop"
+    target-branch: "develop-dependabot"
     schedule:
       interval: "daily"
     open-pull-requests-limit: 4
