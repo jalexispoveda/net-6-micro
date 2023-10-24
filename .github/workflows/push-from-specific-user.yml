@@ -10,7 +10,6 @@ on:
       username: jalexispoveda
 jobs:
   upgrade_version:
-    needs: format-code
     name: Upgrade NET Version
     runs-on: windows-latest
     #if: ${{ github.actor == 'dependabot[bot]' }}
