@@ -2,10 +2,10 @@ version: 2
 updates:
   - package-ecosystem: "nuget" 
     directory: "/"
-    target-branch: "develop-dependabot"
+    target-branch: "main"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 4
+    open-pull-requests-limit: 10
     labels:
       - "nuget dependencies"
     ignore:
