@@ -24,18 +24,24 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Bump versions
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-            commit_message: Updated API Version
-      - name: "Run if changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
-        run: echo "Changes!"
+      uses: velocibear/create-empty-commit@v1.0.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        email: jalexispoveda1@gmail.com
+        name: alekei
+        message: Commit pa probar y sha
+      # - uses: actions/checkout@v4
+      # - name: Bump versions
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #       commit_message: Updated API Version
+      # - name: "Run if changes have been detected"
+      #   if: steps.auto-commit-action.outputs.changes_detected == 'true'
+      #   run: echo "Changes!"
 
-      - name: "Run if no changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'false'
-        run: echo "No Changes!"
+      # - name: "Run if no changes have been detected"
+      #   if: steps.auto-commit-action.outputs.changes_detected == 'false'
+      #   run: echo "No Changes!"
   # upgrade_version:
   #   needs: format-code
   #   name: Upgrade NET Version
