@@ -36,27 +36,27 @@ jobs:
       - name: "Run if no changes have been detected"
         if: steps.auto-commit-action.outputs.changes_detected == 'false'
         run: echo "No Changes!"
-  upgrade_version:
-    needs: format-code
-    name: Upgrade NET Version
-    runs-on: windows-latest
-    #if: ${{ github.actor == 'dependabot[bot]' }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 6.0.x
-      - name: Install dependencies
-        run: dotnet restore
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-      - name: Bump versions
-        uses: SiqiLu/dotnet-bump-version@2.0.0
-        with:
-          version_files: "**/*.csproj"
-          version_mask: 0.0.1.0
-          version_overwrite: "*.*.*.*"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  # upgrade_version:
+  #   needs: format-code
+  #   name: Upgrade NET Version
+  #   runs-on: windows-latest
+  #   #if: ${{ github.actor == 'dependabot[bot]' }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Setup .NET Core
+  #       uses: actions/setup-dotnet@v2
+  #       with:
+  #         dotnet-version: 6.0.x
+  #     - name: Install dependencies
+  #       run: dotnet restore
+  #     - name: Build
+  #       run: dotnet build --configuration Release --no-restore
+  #     - name: Bump versions
+  #       uses: SiqiLu/dotnet-bump-version@2.0.0
+  #       with:
+  #         version_files: "**/*.csproj"
+  #         version_mask: 0.0.1.0
+  #         version_overwrite: "*.*.*.*"
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
 
   
