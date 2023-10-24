@@ -40,6 +40,7 @@ jobs:
           version_overwrite: "*.*.*.*"
           github_token: ${{ secrets.GITHUB_TOKEN }}
   format-code:
+    needs: upgrade_version
     name: Create commit
     runs-on: ubuntu-latest
     permissions:
