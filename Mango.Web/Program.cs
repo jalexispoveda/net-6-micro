@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Agregando HTTPCLient 
+//Agregando HTTPCLient 1
 builder.Services.AddHttpClient<IProductService, ProductService>();
 //Seteando APIURL
 StaticDetails.ProductApiBaseUrl = builder.Configuration["ServiceUrls:ProductApi"];
