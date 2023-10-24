@@ -24,6 +24,7 @@ jobs:
     permissions:
       contents: write
     steps:
+    - name: Send commit
       uses: velocibear/create-empty-commit@v1.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
