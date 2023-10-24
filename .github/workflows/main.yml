@@ -1,5 +1,5 @@
 ---
-name: CI/CD with Dependabot
+name: Create commit
 on:
   push:
     branches:

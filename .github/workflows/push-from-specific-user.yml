@@ -1,5 +1,5 @@
 ---
-name: CI/CD with Dependabot
+name: BUMP Api version
 on:
   push:
     branches:
