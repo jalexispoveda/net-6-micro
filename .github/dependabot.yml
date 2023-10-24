@@ -5,6 +5,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "daily"
+      time: "18:48"
     open-pull-requests-limit: 10
     labels:
       - "nuget dependencies"
