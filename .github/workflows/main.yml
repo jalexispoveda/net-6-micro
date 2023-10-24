@@ -18,7 +18,26 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           skip-commit-verification: false
+  format-code:
+    name: Create commit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump versions
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+            commit_message: Updated API Version
+      - name: "Run if changes have been detected"
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        run: echo "Changes!"
+
+      - name: "Run if no changes have been detected"
+        if: steps.auto-commit-action.outputs.changes_detected == 'false'
+        run: echo "No Changes!"
   upgrade_version:
+    needs: format-code
     name: Upgrade NET Version
     runs-on: windows-latest
     #if: ${{ github.actor == 'dependabot[bot]' }}
@@ -39,23 +58,5 @@ jobs:
           version_mask: 0.0.1.0
           version_overwrite: "*.*.*.*"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-  format-code:
-    needs: upgrade_version
-    name: Create commit
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Bump versions
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-            commit_message: Updated API Version
-      - name: "Run if changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
-        run: echo "Changes!"
 
-      - name: "Run if no changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'false'
-        run: echo "No Changes!"
   
