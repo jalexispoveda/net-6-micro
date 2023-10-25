@@ -3,10 +3,11 @@ name: Create commit
 on:
   push:
     branches:
-     # - 'main' 
+      - 'main' 
       - 'feature/**'
       - 'dependabot/**'
 jobs:
+  
 #   dependabot:
 #     name: Dependabot fetch metadata
 #     runs-on: ubuntu-latest
@@ -31,6 +32,13 @@ jobs:
           echo "GitHub Repository: $GITHUB_REPOSITORY"
           echo "GitHub Actor: $GITHUB_ACTOR"
 
+      - name:  'Automated Version Bump'
+        uses:  '@joneja09/gh-action-dotnet-bump@main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          default: prerelease
+
   # update_commit_author:
   #   needs: print_github_context
   #   runs-on: ubuntu-latest
@@ -50,30 +58,30 @@ jobs:
   #         git commit --amend --no-edit --reset-author
   #         git push --force-with-lease
 
-  format-code:
-    name: Set github user
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      # - name: Creando el comit tinti
-      #   uses: velocibear/create-empty-commit@v1.0.0
-      #   with:
-      #       token: ${{ secrets.GITHUB_TOKEN }}
-      #       email: jalexispoveda1@gmail.com
-      #       name: alekei
-      #       message: Commit pa probar y sha
+  # format-code:
+  #   name: Set github user
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     # - name: Creando el comit tinti
+  #     #   uses: velocibear/create-empty-commit@v1.0.0
+  #     #   with:
+  #     #       token: ${{ secrets.GITHUB_TOKEN }}
+  #     #       email: jalexispoveda1@gmail.com
+  #     #       name: alekei
+  #     #       message: Commit pa probar y sha
       
-      - uses: actions/checkout@v3
-      - run: git config --global user.email "jalexispoveda010@gmail.com"
-      - run: git config --global user.name "jalexispoveda"
-    #  - run: git commit --allow-empty -m "Update pusher"
-      - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>" -m "Amend commit with new author"
-     # - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>"
-     # - run: git commit --allow-empty --amend -m 'New Commit Message'
-      - run: git push --force
-      # - uses: actions/checkout@v4
-      # - name: Bump versions
+  #     - uses: actions/checkout@v3
+  #     - run: git config --global user.email "jalexispoveda010@gmail.com"
+  #     - run: git config --global user.name "jalexispoveda"
+  #   #  - run: git commit --allow-empty -m "Update pusher"
+  #     - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>" -m "Amend commit with new author"
+  #    # - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>"
+  #    # - run: git commit --allow-empty --amend -m 'New Commit Message'
+  #     - run: git push --force
+  #     # - uses: actions/checkout@v4
+  #     # - name: Bump versions
       #   uses: stefanzweifel/git-auto-commit-action@v5
       #   with:
       #       commit_message: Updated API Version
