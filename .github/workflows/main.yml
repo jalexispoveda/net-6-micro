@@ -3,10 +3,11 @@ name: Create commit
 on:
   push:
     branches:
-      #- 'main' 
+      - 'main' 
       - 'feature/**'
       - 'dependabot/**'
-  permissions: write
+
+permissions: write
 
 jobs:  
 #   dependabot:
