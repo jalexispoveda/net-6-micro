@@ -3,7 +3,7 @@ name: Create commit
 on:
   push:
     branches:
-      - 'main' 
+      #- 'main' 
       - 'feature/**'
       - 'dependabot/**'
 jobs:
