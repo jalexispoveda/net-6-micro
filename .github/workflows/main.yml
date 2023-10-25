@@ -1,10 +1,8 @@
 ---
-name: Create commit
+name: BUMP API Version
 on:
   push:
     branches:
-      #- 'main' 
-      #- 'feature/**'
       - 'dependabot/**'
 
 permissions: 
@@ -15,30 +13,21 @@ permissions:
   contents: write
 
 jobs:  
-#   dependabot:
-#     name: Dependabot fetch metadata
-#     runs-on: ubuntu-latest
-#     #if: ${{ github.actor == 'dependabot[bot]' }}
-#     steps:
-#       - name: Dependabot metadata
-#         id: metadata
-#         uses: dependabot/fetch-metadata@v1
-#         with:
-#           github-token: ${{ secrets.GITHUB_TOKEN }}
-#           skip-commit-verification: false
-  print_github_context:
+  dependabot-step:
+    name: Dependabot fetch metadata
     runs-on: ubuntu-latest
-
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Print github.context
-        run: |
-          echo "GitHub Context:"
-          echo "GitHub Repository: $GITHUB_REPOSITORY"
-          echo "GitHub Actor: $GITHUB_ACTOR"
-
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          skip-commit-verification: false
+  bump-version:
+    needs: dependabot-step
+    runs-on: ubuntu-latest
+    steps:
       - name:  Automated Version Bump
         uses:  joneja09/gh-action-dotnet-bump@main
         env:
