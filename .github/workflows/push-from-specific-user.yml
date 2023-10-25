@@ -7,7 +7,7 @@ on:
       - 'feature/**'
       - 'dependabot/**'
     pusher:
-      username: jalexispoveda
+      username: alekei
 jobs:
   upgrade_version:
     name: Upgrade NET Version
