@@ -38,8 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version-part: 'Patch'
-          path-to-file: "/"
-
+          path-to-file: 'Mango.Web/Mango.Web.csproj'
   # update_commit_author:
   #   needs: print_github_context
   #   runs-on: ubuntu-latest
