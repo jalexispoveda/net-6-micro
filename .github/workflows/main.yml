@@ -71,7 +71,7 @@ jobs:
       - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>" -m "Amend commit with new author"
      # - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>"
      # - run: git commit --allow-empty --amend -m 'New Commit Message'
-      - run: git push --force origin master
+      - run: git push --force
       # - uses: actions/checkout@v4
       # - name: Bump versions
       #   uses: stefanzweifel/git-auto-commit-action@v5
