@@ -32,8 +32,8 @@ jobs:
           echo "GitHub Repository: $GITHUB_REPOSITORY"
           echo "GitHub Actor: $GITHUB_ACTOR"
 
-      - name:  'Automated Version Bump'
-        uses:  '@joneja09/gh-action-dotnet-bump@main'
+      - name:  Automated Version Bump
+        uses:  joneja09/gh-action-dotnet-bump@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
