@@ -3,7 +3,7 @@ name: Create commit
 on:
   push:
     branches:
-      #- 'main'
+      #- 'main' 
       - 'feature/**'
       - 'dependabot/**'
 jobs:
@@ -19,17 +19,18 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           skip-commit-verification: false
   format-code:
-    name: Create commit
+    name: Create commitraaa
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      uses: velocibear/create-empty-commit@v1.0.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        email: jalexispoveda1@gmail.com
-        name: alekei
-        message: Commit pa probar y sha
+      - name: Creando el comit tinti
+        uses: velocibear/create-empty-commit@v1.0.0
+        with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            email: jalexispoveda1@gmail.com
+            name: alekei
+            message: Commit pa probar y sha
       # - uses: actions/checkout@v4
       # - name: Bump versions
       #   uses: stefanzweifel/git-auto-commit-action@v5
