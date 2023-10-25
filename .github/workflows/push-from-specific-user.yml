@@ -5,10 +5,10 @@ on:
     branches:
       #- 'main'
       - 'xxx/**'
-      #- 'dependabot/**'
+      - 'dependabot/**'
 jobs:
   upgrade_version:
-    name: Upgrade NET Version
+    name: Upgrade NET Version specific user
     runs-on: windows-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
