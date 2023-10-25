@@ -4,8 +4,10 @@ on:
   push:
     branches:
       #- 'main'
-      - 'xxx/**'
+      - 'feature/**'
       - 'dependabot/**'
+    pusher:
+      username: jalexispoveda
     
 jobs:
   print_github_context:
