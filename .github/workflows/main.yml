@@ -18,25 +18,57 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           skip-commit-verification: false
-  format-code:
-    name: Set github user
+  print_github_context:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-      # - name: Creando el comit tinti
-      #   uses: velocibear/create-empty-commit@v1.0.0
-      #   with:
-      #       token: ${{ secrets.GITHUB_TOKEN }}
-      #       email: jalexispoveda1@gmail.com
-      #       name: alekei
-      #       message: Commit pa probar y sha
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print github.context
+        run: |
+          echo "GitHub Context:"
+          echo "GitHub Repository: $GITHUB_REPOSITORY"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+
+  update_commit_author:
+    needs: print_github_context
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Commit Author
+        uses: WarenGonzaga/git-committee-action@v1
+        with:
+          commit_email: jalexispoveda010@gmail.com  # Replace with the new email
+          commit_name: jalexispoveda  # Replace with the new name
+
+      - name: Commit and Push Changes
+        run: |
+          git commit --amend --no-edit --reset-author
+          git push --force-with-lease
+
+  # format-code:
+  #   name: Set github user
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     # - name: Creando el comit tinti
+  #     #   uses: velocibear/create-empty-commit@v1.0.0
+  #     #   with:
+  #     #       token: ${{ secrets.GITHUB_TOKEN }}
+  #     #       email: jalexispoveda1@gmail.com
+  #     #       name: alekei
+  #     #       message: Commit pa probar y sha
       
-      - uses: actions/checkout@v3
-      - run: git config --global user.email "jalexispoveda010@gmail.com"
-      - run: git config --global user.name "jalexispoveda"
-      - run: git commit --allow-empty -m "Update pusher"
-      - run: git push
+  #     - uses: actions/checkout@v3
+  #     - run: git config --global user.email "jalexispoveda010@gmail.com"
+  #     - run: git config --global user.name "jalexispoveda"
+  #     - run: git commit --allow-empty -m "Update pusher"
+  #     - run: git push
       # - uses: actions/checkout@v4
       # - name: Bump versions
       #   uses: stefanzweifel/git-auto-commit-action@v5
