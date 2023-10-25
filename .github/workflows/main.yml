@@ -38,6 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version-part: 'Patch'
+          path-to-file: "/"
 
   # update_commit_author:
   #   needs: print_github_context
