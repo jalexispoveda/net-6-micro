@@ -13,19 +13,7 @@ permissions:
   contents: write
 
 jobs:  
-  dependabot-step:
-    name: Dependabot fetch metadata
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          skip-commit-verification: false
-  bump-version:
-    needs: dependabot-step
+  bump-api-version:
     runs-on: ubuntu-latest
     steps:
       - name:  Automated Version Bump
