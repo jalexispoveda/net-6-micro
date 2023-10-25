@@ -1,0 +1,7 @@
+﻿//using System.Reflection;
+
+//[assembly: AssemblyVersion("1.0.0.0")s]
+//[assembly: AssemblyFileVersion("1.0.0.0")]
+//[assembly: AssemblyInformationalVersion("1.0.0-beta+abcd123s4ad")] 
+
+

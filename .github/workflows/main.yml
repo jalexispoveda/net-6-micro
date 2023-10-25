@@ -1,0 +1,110 @@
+---
+name: Create commit
+on:
+  push:
+    branches:
+     # - 'main' 
+      - 'feature/**'
+      - 'dependabot/**'
+jobs:
+#   dependabot:
+#     name: Dependabot fetch metadata
+#     runs-on: ubuntu-latest
+#     #if: ${{ github.actor == 'dependabot[bot]' }}
+#     steps:
+#       - name: Dependabot metadata
+#         id: metadata
+#         uses: dependabot/fetch-metadata@v1
+#         with:
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
+#           skip-commit-verification: false
+  print_github_context:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print github.context
+        run: |
+          echo "GitHub Context:"
+          echo "GitHub Repository: $GITHUB_REPOSITORY"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+
+  # update_commit_author:
+  #   needs: print_github_context
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Update Commit Author
+  #       uses: WarenGonzaga/git-committee-action@v1
+  #       with:
+  #         commit_email: jalexispoveda010@gmail.com  # Replace with the new email
+  #         commit_name: jalexispoveda  # Replace with the new name
+
+  #     - name: Commit and Push Changes
+  #       run: |
+  #         git commit --amend --no-edit --reset-author
+  #         git push --force-with-lease
+
+  format-code:
+    name: Set github user
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # - name: Creando el comit tinti
+      #   uses: velocibear/create-empty-commit@v1.0.0
+      #   with:
+      #       token: ${{ secrets.GITHUB_TOKEN }}
+      #       email: jalexispoveda1@gmail.com
+      #       name: alekei
+      #       message: Commit pa probar y sha
+      
+      - uses: actions/checkout@v3
+      - run: git config --global user.email "jalexispoveda010@gmail.com"
+      - run: git config --global user.name "jalexispoveda"
+    #  - run: git commit --allow-empty -m "Update pusher"
+      - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>" -m "Amend commit with new author"
+     # - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>"
+     # - run: git commit --allow-empty --amend -m 'New Commit Message'
+      - run: git push --force
+      # - uses: actions/checkout@v4
+      # - name: Bump versions
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #       commit_message: Updated API Version
+      # - name: "Run if changes have been detected"
+      #   if: steps.auto-commit-action.outputs.changes_detected == 'true'
+      #   run: echo "Changes!"
+
+      # - name: "Run if no changes have been detected"
+      #   if: steps.auto-commit-action.outputs.changes_detected == 'false'
+      #   run: echo "No Changes!"
+  # upgrade_version:
+  #   needs: format-code
+  #   name: Upgrade NET Version
+  #   runs-on: windows-latest
+  #   #if: ${{ github.actor == 'dependabot[bot]' }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Setup .NET Core
+  #       uses: actions/setup-dotnet@v2
+  #       with:
+  #         dotnet-version: 6.0.x
+  #     - name: Install dependencies
+  #       run: dotnet restore
+  #     - name: Build
+  #       run: dotnet build --configuration Release --no-restore
+  #     - name: Bump versions
+  #       uses: SiqiLu/dotnet-bump-version@2.0.0
+  #       with:
+  #         version_files: "**/*.csproj"
+  #         version_mask: 0.0.1.0
+  #         version_overwrite: "*.*.*.*"
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  

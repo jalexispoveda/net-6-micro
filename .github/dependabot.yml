@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget" 
+    directory: "/"
+    target-branch: "main"
+    schedule:
+      interval: "daily"
+      time: "03:03"
+    open-pull-requests-limit: 20
+    labels:
+      - "nuget dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+ 
