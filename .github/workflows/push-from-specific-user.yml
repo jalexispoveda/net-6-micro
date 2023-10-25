@@ -7,7 +7,7 @@ on:
       - 'feature/**'
       - 'dependabot/**'
     pusher:
-      username: jalexispoveda
+      username: pepeperez
     
 jobs:
   print_github_context:
