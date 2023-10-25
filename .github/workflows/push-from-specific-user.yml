@@ -7,7 +7,27 @@ on:
       - 'xxx/**'
       - 'dependabot/**'
 jobs:
+  setup-user:
+    name: Set github user2
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # - name: Creando el comit tinti
+      #   uses: velocibear/create-empty-commit@v1.0.0
+      #   with:
+      #       token: ${{ secrets.GITHUB_TOKEN }}
+      #       email: jalexispoveda1@gmail.com
+      #       name: alekei
+      #       message: Commit pa probar y sha
+      
+      - uses: actions/checkout@v3
+      - run: git config --global user.email "jalexispoveda010@gmail.com"
+      - run: git config --global user.name "jalexispoveda"
+   #   - run: git commit --allow-empty -m "Update pusher"
+   #   - run: git push
   upgrade_version:
+    needs: setup-user
     name: Upgrade NET Version specific user
     runs-on: windows-latest
     #if: ${{ github.actor != 'dependabot[bot]' }}
