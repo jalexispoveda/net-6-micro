@@ -1,6 +1,7 @@
 ---
 name: BUMP API Version
-on: pull_request
+on:
+  push:
     branches:
       - 'dependabot/**'
 
