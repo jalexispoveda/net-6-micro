@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-	  <Version>1.0.7</Version>
-	  <PackageVersion>1.0.7</PackageVersion>
+	  <Version>1.0.8</Version>
+	  <PackageVersion>1.0.8</PackageVersion>
 	  <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Mango.Web-F4F2AF94-27D2-4F17-A13D-0A8290CEC08B</UserSecretsId>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="7.0.3"/>
     <PackageReference Include="Microsoft.IdentityModel.Abstractions" Version="7.0.0"/>
-    <PackageReference Include="Microsoft.NET.Workload.Emscripten.Manifest-6.0.400" Version="6.0.15"/>
+    <PackageReference Include="Microsoft.NET.Workload.Emscripten.Manifest-6.0.400" Version="6.0.24"/>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4"/>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16"/>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
