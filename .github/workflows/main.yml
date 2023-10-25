@@ -1,5 +1,5 @@
 ---
-name: BUMP API Version
+name: Create commit
 on:
   push:
     branches:
@@ -15,7 +15,17 @@ permissions:
 jobs:  
   bump-api-version:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print github.context
+        run: |
+          echo "GitHub Context:"
+          echo "GitHub Repository: $GITHUB_REPOSITORY"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+
       - name:  Automated Version Bump
         uses:  joneja09/gh-action-dotnet-bump@main
         env:
