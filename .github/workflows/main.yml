@@ -6,8 +6,9 @@ on:
       #- 'main' 
       - 'feature/**'
       - 'dependabot/**'
-jobs:
-  
+  permissions: write
+
+jobs:  
 #   dependabot:
 #     name: Dependabot fetch metadata
 #     runs-on: ubuntu-latest
