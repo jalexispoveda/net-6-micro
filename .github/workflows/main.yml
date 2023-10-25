@@ -3,7 +3,7 @@ name: Create commit
 on:
   push:
     branches:
-      #- 'main' 
+      - 'main' 
       - 'feature/**'
       - 'dependabot/**'
 jobs:
@@ -68,8 +68,9 @@ jobs:
       - run: git config --global user.email "jalexispoveda010@gmail.com"
       - run: git config --global user.name "jalexispoveda"
     #  - run: git commit --allow-empty -m "Update pusher"
-      - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>"
-      - run: git commit --allow-empty --amend -m 'New Commit Message'
+      - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>" -m "Amend commit with new author"
+     # - run: git commit --amend --author="jalexispoveda <jalexispoveda010@gmail.com>"
+     # - run: git commit --allow-empty --amend -m 'New Commit Message'
       - run: git push --force origin master
       # - uses: actions/checkout@v4
       # - name: Bump versions
