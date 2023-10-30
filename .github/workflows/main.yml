@@ -27,7 +27,10 @@ jobs:
           echo "GitHub Context:"
           echo "GitHub Repository: $GITHUB_REPOSITORY"
           echo "GitHub Actor: $GITHUB_ACTOR
-          echo ${{ github.server_url }}"
+          echo ${{ github.server_url }}
+          repository: ${{ github.repo }}
+          ref: ${{ github.sha }}
+          path: $GITHUB_WORKSPACE/site"
 
       - name:  Automated Version Bump
         uses:  joneja09/gh-action-dotnet-bump@main
