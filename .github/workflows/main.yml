@@ -5,6 +5,7 @@ on:
     branches:
       - 'dependabot/**'
       - 'main'
+      - 'jalexispoveda-patch-1'
 
 permissions: 
   actions: write
