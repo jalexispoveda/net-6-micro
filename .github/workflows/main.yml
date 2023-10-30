@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'dependabot/**'
+      - 'main'
 
 permissions: 
   actions: write
@@ -24,7 +25,8 @@ jobs:
         run: |
           echo "GitHub Context:"
           echo "GitHub Repository: $GITHUB_REPOSITORY"
-          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "GitHub Actor: $GITHUB_ACTOR
+          echo ${{ github.server_url }}"
 
       - name:  Automated Version Bump
         uses:  joneja09/gh-action-dotnet-bump@main
