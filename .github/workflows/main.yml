@@ -35,7 +35,7 @@ jobs:
         with:
           version-part: 'Patch'
           path-to-file: 'Mango.Web/Mango.Web.csproj'
-          repository-domain: 'test'
+          repository-domain: 'github.com'
   # update_commit_author:
   #   needs: print_github_context 
   #   runs-on: ubuntu-latest
