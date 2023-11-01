@@ -29,14 +29,14 @@ jobs:
           echo "GitHub Actor: $GITHUB_ACTOR"
 
       - name:  Automated Version Bump
-        uses:  jalexispoveda/gh-action-dotnet-bump@1.0.0
+        uses:  jalexispoveda/gh-action-dotnet-bump@1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version-part: 'Patch'
           path-to-file: 'Mango.Web/Mango.Web.csproj'
           repository-domain: 'github.com'
-  # update_commit_author:
+  # update_commit_author: 
   #   needs: print_github_context 
   #   runs-on: ubuntu-latest
 
