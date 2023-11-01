@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-	  <Version>1.0.9</Version>
-	  <PackageVersion>1.0.9</PackageVersion>
+	  <Version>1.0.10</Version>
+	  <PackageVersion>1.0.10</PackageVersion>
 	  <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Mango.Web-F4F2AF94-27D2-4F17-A13D-0A8290CEC08B</UserSecretsId>
   </PropertyGroup>
