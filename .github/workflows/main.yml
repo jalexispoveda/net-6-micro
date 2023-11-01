@@ -37,7 +37,7 @@ jobs:
           path-to-file: 'Mango.Web/Mango.Web.csproj'
           repository-domain: 'test'
   # update_commit_author:
-  #   needs: print_github_context
+  #   needs: print_github_context 
   #   runs-on: ubuntu-latest
 
   #   steps:
