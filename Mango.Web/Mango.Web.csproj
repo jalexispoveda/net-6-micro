@@ -20,7 +20,7 @@
     <PackageReference Include="Hangfire.Core" Version="1.8.2"/>
     <PackageReference Include="log4net" Version="2.0.12"/>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.23"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.23"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25"/>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.23"/>
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.16"/>
     <PackageReference Include="Microsoft.Data.SqlClient.SNI.runtime" Version="5.1.0"/>
